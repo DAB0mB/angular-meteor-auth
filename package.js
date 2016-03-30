@@ -46,6 +46,7 @@ Package.onTest(function(api) {
   */
 
   api.addFiles([
+    'tests/collections.js',
     'tests/mocks.js',
     'tests/integration/auth.spec.js'
   ], 'client');

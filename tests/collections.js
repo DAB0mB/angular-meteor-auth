@@ -1,0 +1,1 @@
+DummyCollection = new Meteor.Collection('dummy');

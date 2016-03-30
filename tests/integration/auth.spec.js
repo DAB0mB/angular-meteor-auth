@@ -179,6 +179,18 @@ describe('angular-meteor.auth', function() {
         expect(Tracker.Computation.prototype.stop).toHaveBeenCalled();
         promise.stop();
       });
+
+      it('should not cancel subscriptions once user has logged in', function(done) {
+        Accounts.login('tempUser', function() {
+          var spy = jasmine.createSpy().and.returnValue(true);
+
+          scope.$awaitUser(spy).then(function() {
+            scope.subscribe('dummy', angular.noop, done);
+          });
+
+          scope.$$throttledDigest();
+        });
+      });
     });
 
     describe('$waitForUser()', function() {
